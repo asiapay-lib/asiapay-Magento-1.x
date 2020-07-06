@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+
+-->
+<config>
+    <modules>
+        <Asiapay_Pdcptb>
+            <version>1.0</version>
+            <depends>
+                <Mage_Payment />
+            </depends>
+        </Asiapay_Pdcptb>
+    </modules>
+    <global>
+    	<models>
+    		<pdcptb>
+	    		<class>Asiapay_Pdcptb_Model</class>
+	    	</pdcptb>
+    	</models>
+    	<helpers>
+    		<pdcptb>
+    			<class>Asiapay_Pdcptb_Helper</class>
+    		</pdcptb>
+    	</helpers>
+    	<blocks>
+            <pdcptb>
+            	<class>Asiapay_Pdcptb_Block</class>
+            </pdcptb>
+        </blocks>
+        <resources>
+            <pdcptb_setup>
+                <setup>
+                    <module>Asiapay_Pdcptb</module>
+                </setup>
+                <connection>
+                    <use>directory_setup</use>
+                </connection>
+            </pdcptb_setup>
+            <pdcptb_write>
+                <connection>
+                    <use>local_write</use>
+                </connection>
+            </pdcptb_write>
+            <pdcptb_read>
+                <connection>
+                    <use>local_read</use>
+                </connection>
+            </pdcptb_read>
+        </resources>
+    </global>
+    <admin>
+    	<routers>
+        	<adminhtml>
+            	<use>admin</use>
+            	<args>
+                	<asiapay_pdcptb before="Mage_Adminhtml">Asiapay_Pdcptb_Adminhtml</asiapay_pdcptb>
+            	</args>
+        	</adminhtml>
+ 		</routers>
+ 	</admin>
+    <frontend>
+        <routers>
+            <pdcptb>
+                <use>standard</use>
+                <args>
+                    <module>Asiapay_Pdcptb</module>
+                    <frontName>pdcptb</frontName>
+                </args>
+            </pdcptb>
+        </routers>
+    </frontend>
+	<default>
+        <payment>
+            <pdcptb>
+                <active>1</active>
+                <!--<cctypes>VI,MC</cctypes>-->
+                <cgi_url>https://test.paydollar.com/b2cDemo/eng/payment/payForm.jsp</cgi_url>
+                <model>pdcptb/pdcptb</model>
+                <order_status>1</order_status>
+                <title>AsiaPay's PayDollar - Client Post Through Browser Module </title>
+                <merchant_id></merchant_id>
+                <allowspecific>0</allowspecific>
+                <memberpay>F</memberpay>
+                <pay_type>N</pay_type>
+                <api_url>https://test.paydollar.com/b2cDemo/eng/merchant/api/orderApi.jsp</api_url>
+            </pdcptb>
+        </payment>
+    </default>
+</config>
